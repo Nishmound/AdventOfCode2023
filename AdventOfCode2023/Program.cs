@@ -8,10 +8,10 @@ RunDay(new Day01(),
     "What is the sum of all of the calibration values?");
 
 RunDay(new Day02(),
-    "TestInput",
+    "input_day02",
     "Day 2: Cube Conundrum",
     "What is the sum of the IDs of those games?",
-    "");
+    "What is the sum of the power of these sets?");
 
 Console.ReadLine();
 

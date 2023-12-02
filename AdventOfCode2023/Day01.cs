@@ -56,7 +56,6 @@ internal class Day01 : AdventDay<int>
     {
         string first = ParseNum(Regex.Match(line, pFirst).Groups[1].Value);
         string last = ParseNum(Regex.Match(string.Concat(line.Reverse()), pLast).Groups[1].Value);
-        Console.WriteLine(first + last);
         return int.Parse(first + last);
     }
 }
