@@ -1,6 +1,4 @@
-﻿
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 internal class Day01 : AdventDay<int>
 {
@@ -21,14 +19,12 @@ internal class Day01 : AdventDay<int>
     public int RunP2(StreamReader reader)
     {
         List<int> values = new();
-        string? line;
         string pFirst = @"(\d|one|two|three|four|five|six|seven|eight|nine)";
         string pLast = @"(\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin)";
+        string? line;
         while ((line = reader.ReadLine()) != null)
         {
-            string first = ParseNum(Regex.Match(line, pFirst).Groups[1].Value);
-            string last = ParseNum(Regex.Match(string.Concat(line.Reverse()), pLast).Groups[1].Value);
-            values.Add(int.Parse(first + last));
+            values.Add(getValue(line, pFirst, pLast));
         }
         return values.Sum();
     }
@@ -55,4 +51,12 @@ internal class Day01 : AdventDay<int>
         "enin" => "9",
         _ => num
     };
+
+    private static int getValue(string line, string pFirst, string pLast)
+    {
+        string first = ParseNum(Regex.Match(line, pFirst).Groups[1].Value);
+        string last = ParseNum(Regex.Match(string.Concat(line.Reverse()), pLast).Groups[1].Value);
+        Console.WriteLine(first + last);
+        return int.Parse(first + last);
+    }
 }

@@ -7,9 +7,15 @@ RunDay(new Day01(),
     "What is the sum of all of the calibration values?",
     "What is the sum of all of the calibration values?");
 
+RunDay(new Day02(),
+    "TestInput",
+    "Day 2: Cube Conundrum",
+    "What is the sum of the IDs of those games?",
+    "");
+
 Console.ReadLine();
 
-static void write_sep() => Console.WriteLine(string.Join("", Enumerable.Repeat("#", 50)));
+static void write_sep() => Console.WriteLine(string.Concat(Enumerable.Repeat("#", 50)));
 static void write_empty() => Console.WriteLine();
 
 static void RunDay<T>(AdventDay<T> day, string inputPath, string title, string p1Text, string p2Text)
