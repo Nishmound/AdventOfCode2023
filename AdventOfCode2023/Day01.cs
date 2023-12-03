@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿namespace AdventOfCode2023;
+using System.Text.RegularExpressions;
 
 internal class Day01 : AdventDay<int>
 {

@@ -1,4 +1,6 @@
-﻿Console.WriteLine("Advent of Code\n$year=2023;");
+﻿using AdventOfCode2023;
+
+Console.WriteLine("Advent of Code\n$year=2023;");
 write_empty();
 
 RunDay(new Day01(),
@@ -12,6 +14,12 @@ RunDay(new Day02(),
     "Day 2: Cube Conundrum",
     "What is the sum of the IDs of those games?",
     "What is the sum of the power of these sets?");
+
+RunDay(new Day03(),
+    "input_day03",
+    "Day 3: Gear Ratios",
+    "What is the sum of all of the part numbers in the engine schematic?",
+    "What is the sum of all of the gear ratios in your engine schematic?");
 
 Console.ReadLine();
 
