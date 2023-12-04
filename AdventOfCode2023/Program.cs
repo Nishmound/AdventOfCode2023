@@ -21,6 +21,12 @@ RunDay(new Day03(),
     "What is the sum of all of the part numbers in the engine schematic?",
     "What is the sum of all of the gear ratios in your engine schematic?");
 
+RunDay(new Day04(),
+    "input_day04",
+    "Day 4: Scratchcards",
+    "How many points are they worth in total?",
+    "how many total scratchcards do you end up with?");
+
 Console.ReadLine();
 
 static void write_sep() => Console.WriteLine(string.Concat(Enumerable.Repeat("#", 50)));

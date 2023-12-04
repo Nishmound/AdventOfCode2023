@@ -60,4 +60,10 @@ public static class Helper
         public static Vector2D operator *(double s, Vector2D v) => new(v.X * s, v.Y * s);
         public static Vector2D operator /(Vector2D v, double s) => new(v.X / s, v.Y / s);
     }
+    public static int Pow(this int bas, int exp)
+    {
+        return Enumerable
+              .Repeat(bas, exp)
+              .Aggregate(1, (a, b) => a * b);
+    }
 }
