@@ -27,6 +27,12 @@ RunDay(new Day04(),
     "How many points are they worth in total?",
     "how many total scratchcards do you end up with?");
 
+RunDay(new Day05(),
+    "input_day05",
+    "Day 5: If You Give A Seed A Fertilizer",
+    "What is the lowest location number that corresponds to any of the initial seed numbers?",
+    "What is the lowest location number that corresponds to any of the initial seed numbers?");
+
 Console.ReadLine();
 
 static void write_sep() => Console.WriteLine(string.Concat(Enumerable.Repeat("#", 50)));
