@@ -37,21 +37,19 @@ internal class Day05 : AdventDay<long>
         var HumidMap = ParseMap(reader);
         var LocMap = ParseMap(reader);
 
-        var min = long.MaxValue;
-
-        for (int i = 0; i < seeds.Length; i+=2)
+        for (long i = 0; i < long.MaxValue; i++)
         {
-            Console.WriteLine($"Range {(i+1)/2}/{seeds.Length/2}");
-            for (long j = seeds[i]; j < seeds[i] + seeds[i+1]; j++)
+            long seed = MapRev(MapRev(MapRev(MapRev(MapRev(MapRev(MapRev(i, LocMap), HumidMap), TempMap), LightMap), WaterMap), FertMap), SoilMap);
+            for (int j = 0; j < seeds.Length; j += 2)
             {
-                long loc = Map(Map(Map(Map(Map(Map(Map(j, SoilMap), FertMap), WaterMap), LightMap), TempMap), HumidMap), LocMap);
-                min = loc < min ? loc : min;
+                if (seed > seeds[j] && seed < seeds[j] + seeds[j + 1]) return i;
             }
         }
-        return min;
+
+        return long.MaxValue;
     }
 
-    private (long, long, long)[] ParseMap (StreamReader reader)
+    private (long, long, long)[] ParseMap(StreamReader reader)
     {
         reader.ReadLine();
         List<(long, long, long)> map = new();
@@ -72,5 +70,15 @@ internal class Day05 : AdventDay<long>
             return map[i].dest + (source - map[i].src);
         }
         return source;
+    }
+
+    private long MapRev(in long dest, in (long dest, long src, long len)[] map)
+    {
+        for (int i = 0; i < map.Length; i++)
+        {
+            if (dest < map[i].dest || dest >= map[i].dest + map[i].len) continue;
+            return map[i].src + (dest - map[i].dest);
+        }
+        return dest;
     }
 }
