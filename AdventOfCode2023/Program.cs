@@ -3,6 +3,7 @@
 Console.WriteLine("Advent of Code\n$year=2023;");
 write_empty();
 
+/*
 RunDay(new Day01(),
     "input_day01",
     "Day 1: Trebuchet?!",
@@ -32,6 +33,13 @@ RunDay(new Day05(),
     "Day 5: If You Give A Seed A Fertilizer",
     "What is the lowest location number that corresponds to any of the initial seed numbers?",
     "What is the lowest location number that corresponds to any of the initial seed numbers?");
+*/
+
+RunDay(new Day06(),
+    "input_day06",
+    "Day 6: Wait For It",
+    "What do you get if you multiply these numbers together?",
+    "How many ways can you beat the record in this one much longer race?");
 
 Console.ReadLine();
 

@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2023;
+﻿using System.Numerics;
+
+namespace AdventOfCode2023;
 public static class Helper
 {
     public readonly record struct Position2D(int X, int Y) : IComparable<Position2D>
@@ -60,10 +62,11 @@ public static class Helper
         public static Vector2D operator *(double s, Vector2D v) => new(v.X * s, v.Y * s);
         public static Vector2D operator /(Vector2D v, double s) => new(v.X / s, v.Y / s);
     }
-    public static int Pow(this int bas, int exp)
+
+    public static T Pow<T>(this T bas, int exp) where T : INumber<T>
     {
         return Enumerable
               .Repeat(bas, exp)
-              .Aggregate(1, (a, b) => a * b);
+              .Aggregate((a, b) => a * b);
     }
 }
