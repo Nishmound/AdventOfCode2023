@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace AdventOfCode2023;
 public static class Helper
@@ -69,5 +70,15 @@ public static class Helper
         return Enumerable
               .Repeat(bas, exp)
               .Aggregate((a, b) => a * b);
+    }
+
+    public static IEnumerable<T> ShowElements<T>(this IEnumerable<T> collection)
+    {
+        foreach (var elem in collection)
+        {
+            Console.Write($"{elem}; ");
+        }
+        Console.WriteLine();
+        return collection;
     }
 }

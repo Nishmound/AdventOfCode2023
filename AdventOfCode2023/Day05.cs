@@ -4,7 +4,9 @@ internal class Day05 : AdventDay<long>
 {
     public long RunP1(StreamReader reader)
     {
+#pragma warning disable CS8602 // Dereferenzierung eines möglichen Nullverweises.
         var seeds = reader.ReadLine()[7..].Split(' ').Select(long.Parse).ToArray();
+#pragma warning restore CS8602 // Dereferenzierung eines möglichen Nullverweises.
         reader.ReadLine();
         var SoilMap = ParseMap(reader);
         var FertMap = ParseMap(reader);
@@ -37,6 +39,23 @@ internal class Day05 : AdventDay<long>
         var HumidMap = ParseMap(reader);
         var LocMap = ParseMap(reader);
 
+        List<(long, long)> seedRanges = new();
+        for (int i = 0; i < seeds.Length; i += 2)
+        {
+            seedRanges.Add((seeds[i], seeds[i + 1]));
+        }
+
+        return seedRanges
+            .Select(x => MapRange(x.Item1, x.Item2, SoilMap)).SelectMany(x => x)
+            .Select(x => MapRange(x.Item1, x.Item2, FertMap)).SelectMany(x => x)
+            .Select(x => MapRange(x.Item1, x.Item2, WaterMap)).SelectMany(x => x)
+            .Select(x => MapRange(x.Item1, x.Item2, LightMap)).SelectMany(x => x)
+            .Select(x => MapRange(x.Item1, x.Item2, TempMap)).SelectMany(x => x)
+            .Select(x => MapRange(x.Item1, x.Item2, HumidMap)).SelectMany(x => x)
+            .Select(x => MapRange(x.Item1, x.Item2, LocMap)).SelectMany(x => x)
+            .MinBy(x => x.Item1).Item1;
+
+        /*
         for (long i = 0; i < long.MaxValue; i++)
         {
             long seed = MapRev(MapRev(MapRev(MapRev(MapRev(MapRev(MapRev(i, LocMap), HumidMap), TempMap), LightMap), WaterMap), FertMap), SoilMap);
@@ -45,8 +64,9 @@ internal class Day05 : AdventDay<long>
                 if (seed > seeds[j] && seed < seeds[j] + seeds[j + 1]) return i;
             }
         }
-
+        
         return long.MaxValue;
+        */
     }
 
     private (long, long, long)[] ParseMap(StreamReader reader)
@@ -81,4 +101,59 @@ internal class Day05 : AdventDay<long>
         }
         return dest;
     }
+
+    private IEnumerable<(long, long)> MapRange(in long sourceStart, in long sourceOffset, in (long dest, long src, long len)[] map)
+    {
+        List<(long, long)> ranges = new();
+        var currStart = sourceStart;
+        var currOffset = sourceOffset;
+        bool consumed = false;
+        while (!consumed)
+        {
+            for (int i = 0; i < map.Length; i++)
+            {
+                if (currStart >= map[i].src && currStart < map[i].src + map[i].len)
+                {
+                    if (currStart + currOffset <= map[i].src + map[i].len)
+                    {
+                        ranges.Add((map[i].dest + (currStart - map[i].src), currOffset));
+                        consumed = true;
+                        goto skip;
+                    }
+                    var newOffset = map[i].src + map[i].len - currStart;
+                    ranges.Add((map[i].dest + (currStart - map[i].src), newOffset));
+                    currStart = map[i].src + map[i].len;
+                    currOffset = currOffset - newOffset;
+                    goto skip;
+                }
+            }
+            int nextRange = -1;
+            long nextDist = long.MaxValue;
+            for (int i = 0; i < map.Length; i++)
+            {
+                if (map[i].src >= currStart && map[i].src - currStart + currOffset < 0)
+                {
+                    if (map[i].src - currStart < nextDist)
+                    {
+                        nextDist = map[i].src - currStart;
+                        nextRange = i;
+                    }
+                }
+            }
+            if (nextRange >= 0)
+            {
+                var newOffset = map[nextRange].src - currStart;
+                ranges.Add((currStart, newOffset));
+                currStart = map[nextRange].src;
+                currOffset = currOffset - newOffset;
+                continue;
+            }
+            ranges.Add((currStart, currOffset));
+            consumed = true;
+        skip:;
+        }
+
+        return ranges;
+    }
+
 }
