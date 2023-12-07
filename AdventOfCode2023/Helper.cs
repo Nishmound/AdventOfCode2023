@@ -65,6 +65,7 @@ public static class Helper
 
     public static T Pow<T>(this T bas, int exp) where T : INumber<T>
     {
+        if (exp == 0) return T.MultiplicativeIdentity;
         return Enumerable
               .Repeat(bas, exp)
               .Aggregate((a, b) => a * b);
