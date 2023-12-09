@@ -76,7 +76,7 @@ public static class Helper
     {
         foreach (var elem in collection)
         {
-            Console.Write($"{elem}; ");
+            Console.WriteLine($"{elem}");
         }
         Console.WriteLine();
         return collection;

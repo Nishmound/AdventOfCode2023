@@ -54,7 +54,7 @@ RunDay(new Day08(),
 #endif
 
 RunDay(new Day09(),
-    "TestInput",
+    "input_day09",
     "Day 9: Mirage Maintenance",
     "What is the sum of these extrapolated values?",
     "What is the sum of these extrapolated values?");
