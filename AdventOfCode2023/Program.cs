@@ -39,13 +39,25 @@ RunDay(new Day06(),
     "Day 6: Wait For It",
     "What do you get if you multiply these numbers together?",
     "How many ways can you beat the record in this one much longer race?");
-#endif
 
 RunDay(new Day07(),
     "input_day07",
     "Day 7: Camel Cards",
     "What are the total winnings?",
     "What are the total winnings?");
+
+RunDay(new Day08(),
+    "input_day08",
+    "Day 8: Haunted Wasteland",
+    "How many steps are required to reach ZZZ?",
+    "How many steps does it take before you're only on nodes that end with Z?");
+#endif
+
+RunDay(new Day09(),
+    "TestInput",
+    "Day 9: Mirage Maintenance",
+    "What is the sum of these extrapolated values?",
+    "What is the sum of these extrapolated values?");
 
 Console.ReadLine();
 
