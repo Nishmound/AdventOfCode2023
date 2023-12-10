@@ -51,13 +51,21 @@ RunDay(new Day08(),
     "Day 8: Haunted Wasteland",
     "How many steps are required to reach ZZZ?",
     "How many steps does it take before you're only on nodes that end with Z?");
-#endif
 
 RunDay(new Day09(),
     "input_day09",
     "Day 9: Mirage Maintenance",
     "What is the sum of these extrapolated values?",
     "What is the sum of these extrapolated values?");
+
+#endif
+
+RunDay(new Day10(),
+    "input_day10",
+    "Day 10: Pipe Maze",
+    "How many steps along the loop does it take to get from the starting position\n" +
+    "to the point farthest from the starting position?",
+    "How many tiles are enclosed by the loop?");
 
 Console.ReadLine();
 
