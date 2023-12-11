@@ -58,14 +58,20 @@ RunDay(new Day09(),
     "What is the sum of these extrapolated values?",
     "What is the sum of these extrapolated values?");
 
-#endif
-
 RunDay(new Day10(),
     "input_day10",
     "Day 10: Pipe Maze",
     "How many steps along the loop does it take to get from the starting position\n" +
     "to the point farthest from the starting position?",
     "How many tiles are enclosed by the loop?");
+
+#endif
+
+RunDay(new Day11(),
+    "input_day11",
+    "Day 11: Cosmic Expansion",
+    "What is the sum of these lengths?",
+    "What is the sum of these lengths?");
 
 Console.ReadLine();
 
