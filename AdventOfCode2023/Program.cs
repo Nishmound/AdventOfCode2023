@@ -65,13 +65,19 @@ RunDay(new Day10(),
     "to the point farthest from the starting position?",
     "How many tiles are enclosed by the loop?");
 
-#endif
-
 RunDay(new Day11(),
     "input_day11",
     "Day 11: Cosmic Expansion",
     "What is the sum of these lengths?",
     "What is the sum of these lengths?");
+
+#endif
+
+RunDay(new Day12(),
+    "input_day12",
+    "Day 12: Hot Springs",
+    "What is the sum of those counts?",
+    "What is the sum of those counts?");
 
 Console.ReadLine();
 
