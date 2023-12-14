@@ -71,13 +71,19 @@ RunDay(new Day11(),
     "What is the sum of these lengths?",
     "What is the sum of these lengths?");
 
-#endif
-
 RunDay(new Day12(),
     "input_day12",
     "Day 12: Hot Springs",
     "What is the sum of those counts?",
     "What is the sum of those counts?");
+
+#endif
+
+RunDay(new Day13(),
+    "input_day13",
+    "Day 13: Point of Incidence",
+    "What number do you get after summarizing all of your notes?",
+    "What number do you get after summarizing all of your notes?");
 
 Console.ReadLine();
 
