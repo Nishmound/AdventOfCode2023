@@ -83,13 +83,19 @@ RunDay(new Day13(),
     "What number do you get after summarizing all of your notes?",
     "What number do you get after summarizing all of your notes?");
 
-#endif
-
 RunDay(new Day14(),
     "input_day14",
     "Day 14: Parabolic Reflector Dish",
     "What is the total load on the north support beams?",
     "What is the total load on the north support beams?");
+
+#endif
+
+RunDay(new Day15(),
+    "input_day15",
+    "Day 15: Lens Library",
+    "What is the sum of the results?",
+    "What is the sum of the results?");
 
 Console.ReadLine();
 
