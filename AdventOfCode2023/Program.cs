@@ -77,13 +77,19 @@ RunDay(new Day12(),
     "What is the sum of those counts?",
     "What is the sum of those counts?");
 
-#endif
-
 RunDay(new Day13(),
     "input_day13",
     "Day 13: Point of Incidence",
     "What number do you get after summarizing all of your notes?",
     "What number do you get after summarizing all of your notes?");
+
+#endif
+
+RunDay(new Day14(),
+    "input_day14",
+    "Day 14: Parabolic Reflector Dish",
+    "What is the total load on the north support beams?",
+    "What is the total load on the north support beams?");
 
 Console.ReadLine();
 
