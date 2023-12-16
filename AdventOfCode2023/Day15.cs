@@ -1,4 +1,4 @@
-﻿
+﻿namespace AdventOfCode2023;
 internal class Day15 : AdventDay<long>
 {
     public long RunP1(StreamReader reader)

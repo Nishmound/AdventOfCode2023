@@ -89,13 +89,19 @@ RunDay(new Day14(),
     "What is the total load on the north support beams?",
     "What is the total load on the north support beams?");
 
-#endif
-
 RunDay(new Day15(),
     "input_day15",
     "Day 15: Lens Library",
     "What is the sum of the results?",
     "What is the sum of the results?");
+
+#endif
+
+RunDay(new Day16(),
+    "input_day16",
+    "Day 16: The Floor Will Be Lava",
+    "How many tiles end up being energized?",
+    "How many tiles end up being energized?");
 
 Console.ReadLine();
 
