@@ -101,13 +101,21 @@ RunDay(new Day16(),
     "How many tiles end up being energized?",
     "How many tiles end up being energized?");
 
-#endif
-
+/*
 RunDay(new Day17(),
     "input_day17",
     "Day 17: Clumsy Crucible",
     "What is the least heat loss it can incur?",
     "What is the least heat loss it can incur?");
+*/
+
+#endif
+
+RunDay(new Day18(),
+    "input_day18",
+    "Day 18: Lavaduct Lagoon",
+    "How many cubic meters of lava could it hold?",
+    "How many cubic meters of lava could it hold?");
 
 Console.ReadLine();
 

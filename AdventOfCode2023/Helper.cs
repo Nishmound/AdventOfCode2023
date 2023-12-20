@@ -38,10 +38,22 @@ public static class Helper
         public static Vector2DInt operator *(int left, Vector2DInt right)
             => new(right.X * left, right.Y * left);
 
-        public static Vector2DInt AdditiveIdentity => new();
+        public static Vector2DInt AdditiveIdentity => Zero;
+
+        public static Vector2DInt Up { get { return new(0, 1); } }
+        public static Vector2DInt Down { get { return new(0, -1); } }
+        public static Vector2DInt Left { get { return new(-1, 0); } }
+        public static Vector2DInt Right { get { return new(1, 0); } }
+        public static Vector2DInt Zero { get { return new(); } }
     }
 
-    public readonly record struct Vector2DLong(long X, long Y) : IComparable<Vector2DLong>
+    public readonly record struct Vector2DLong(long X, long Y) : 
+        IComparable<Vector2DLong>,
+        IAdditionOperators<Vector2DLong, Vector2DLong, Vector2DLong>,
+        ISubtractionOperators<Vector2DLong, Vector2DLong, Vector2DLong>,
+        IAdditiveIdentity<Vector2DLong, Vector2DLong>,
+        IMultiplyOperators<Vector2DLong, long, Vector2DLong>,
+        IComparisonOperators<Vector2DLong, Vector2DLong, bool>
     {
         public static implicit operator Vector2DLong((long, long) p) => new(p.Item1, p.Item2);
         public static explicit operator (long, long)(Vector2DLong p) => (p.X, p.Y);
@@ -61,6 +73,25 @@ public static class Helper
         public static bool operator <(Vector2DLong left, Vector2DLong right) => left.CompareTo(right) < 0;
         public static bool operator >=(Vector2DLong left, Vector2DLong right) => left.CompareTo(right) >= 0;
         public static bool operator <=(Vector2DLong left, Vector2DLong right) => left.CompareTo(right) <= 0;
+
+        public static Vector2DLong operator +(Vector2DLong left, Vector2DLong right)
+            => new(left.X + right.X, left.Y + right.Y);
+
+        public static Vector2DLong operator -(Vector2DLong left, Vector2DLong right)
+            => new(left.X - right.X, left.Y - right.Y);
+
+        public static Vector2DLong operator *(Vector2DLong left, long right)
+            => new(left.X * right, left.Y * right);
+        public static Vector2DLong operator *(long left, Vector2DLong right)
+            => new(right.X * left, right.Y * left);
+
+        public static Vector2DLong AdditiveIdentity => Zero;
+
+        public static Vector2DLong Up { get { return new(0, 1); } }
+        public static Vector2DLong Down { get { return new(0, -1); } }
+        public static Vector2DLong Left { get { return new(-1, 0); } }
+        public static Vector2DLong Right { get { return new(1, 0); } }
+        public static Vector2DLong Zero { get { return new(); } }
     }
 
     public readonly record struct Position3D(int X, int Y, int Z) : IComparable<Position3D>
