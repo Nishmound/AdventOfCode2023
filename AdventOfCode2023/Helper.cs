@@ -1,15 +1,20 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace AdventOfCode2023;
 public static class Helper
 {
-    public readonly record struct Position2D(int X, int Y) : IComparable<Position2D>
+    public readonly record struct Vector2DInt(int X, int Y) : 
+        IComparable<Vector2DInt>, 
+        IAdditionOperators<Vector2DInt, Vector2DInt, Vector2DInt>,
+        ISubtractionOperators<Vector2DInt, Vector2DInt, Vector2DInt>,
+        IAdditiveIdentity<Vector2DInt, Vector2DInt>,
+        IMultiplyOperators<Vector2DInt, int, Vector2DInt>,
+        IComparisonOperators<Vector2DInt, Vector2DInt, bool>
     {
-        public static implicit operator Position2D((int, int) p) => new(p.Item1, p.Item2);
-        public static explicit operator (int, int)(Position2D p) => (p.X, p.Y);
+        public static implicit operator Vector2DInt((int, int) p) => new(p.Item1, p.Item2);
+        public static explicit operator (int, int)(Vector2DInt p) => (p.X, p.Y);
 
-        public int CompareTo(Position2D other)
+        public int CompareTo(Vector2DInt other)
         {
             if (Y < other.Y) return -1;
             if (Y > other.Y) return 1;
@@ -17,21 +22,34 @@ public static class Helper
             if (X > other.X) return 1;
             return 0;
         }
-        public static bool operator >(Position2D left, Position2D right) => left.CompareTo(right) > 0;
-        public static bool operator <(Position2D left, Position2D right) => left.CompareTo(right) < 0;
-        public static bool operator >=(Position2D left, Position2D right) => left.CompareTo(right) >= 0;
-        public static bool operator <=(Position2D left, Position2D right) => left.CompareTo(right) <= 0;
+        public static bool operator >(Vector2DInt left, Vector2DInt right) => left.CompareTo(right) > 0;
+        public static bool operator <(Vector2DInt left, Vector2DInt right) => left.CompareTo(right) < 0;
+        public static bool operator >=(Vector2DInt left, Vector2DInt right) => left.CompareTo(right) >= 0;
+        public static bool operator <=(Vector2DInt left, Vector2DInt right) => left.CompareTo(right) <= 0;
+
+        public static Vector2DInt operator +(Vector2DInt left, Vector2DInt right) 
+            => new(left.X + right.X, left.Y + right.Y);
+
+        public static Vector2DInt operator -(Vector2DInt left, Vector2DInt right)
+            => new(left.X - right.X, left.Y - right.Y);
+
+        public static Vector2DInt operator *(Vector2DInt left, int right)
+            => new(left.X * right, left.Y * right);
+        public static Vector2DInt operator *(int left, Vector2DInt right)
+            => new(right.X * left, right.Y * left);
+
+        public static Vector2DInt AdditiveIdentity => new();
     }
 
-    public readonly record struct Position2DLong(long X, long Y) : IComparable<Position2DLong>
+    public readonly record struct Vector2DLong(long X, long Y) : IComparable<Vector2DLong>
     {
-        public static implicit operator Position2DLong((long, long) p) => new(p.Item1, p.Item2);
-        public static explicit operator (long, long)(Position2DLong p) => (p.X, p.Y);
+        public static implicit operator Vector2DLong((long, long) p) => new(p.Item1, p.Item2);
+        public static explicit operator (long, long)(Vector2DLong p) => (p.X, p.Y);
 
-        public static implicit operator Position2DLong(Position2D p) => new(p.X, p.Y);
-        public static explicit operator Position2D(Position2DLong p) => new((int)p.X, (int)p.Y);
+        public static implicit operator Vector2DLong(Vector2DInt p) => new(p.X, p.Y);
+        public static explicit operator Vector2DInt(Vector2DLong p) => new((int)p.X, (int)p.Y);
 
-        public int CompareTo(Position2DLong other)
+        public int CompareTo(Vector2DLong other)
         {
             if (Y < other.Y) return -1;
             if (Y > other.Y) return 1;
@@ -39,10 +57,10 @@ public static class Helper
             if (X > other.X) return 1;
             return 0;
         }
-        public static bool operator >(Position2DLong left, Position2DLong right) => left.CompareTo(right) > 0;
-        public static bool operator <(Position2DLong left, Position2DLong right) => left.CompareTo(right) < 0;
-        public static bool operator >=(Position2DLong left, Position2DLong right) => left.CompareTo(right) >= 0;
-        public static bool operator <=(Position2DLong left, Position2DLong right) => left.CompareTo(right) <= 0;
+        public static bool operator >(Vector2DLong left, Vector2DLong right) => left.CompareTo(right) > 0;
+        public static bool operator <(Vector2DLong left, Vector2DLong right) => left.CompareTo(right) < 0;
+        public static bool operator >=(Vector2DLong left, Vector2DLong right) => left.CompareTo(right) >= 0;
+        public static bool operator <=(Vector2DLong left, Vector2DLong right) => left.CompareTo(right) <= 0;
     }
 
     public readonly record struct Position3D(int X, int Y, int Z) : IComparable<Position3D>
@@ -50,8 +68,8 @@ public static class Helper
         public static implicit operator Position3D((int, int, int) p) => new(p.Item1, p.Item2, p.Item3);
         public static explicit operator (int, int, int)(Position3D p) => (p.X, p.Y, p.Z);
 
-        public static implicit operator Position3D(Position2D p) => new(p.X, p.Y, 0);
-        public static explicit operator Position2D(Position3D p) => new(p.X, p.Y);
+        public static implicit operator Position3D(Vector2DInt p) => new(p.X, p.Y, 0);
+        public static explicit operator Vector2DInt(Position3D p) => new(p.X, p.Y);
 
         public int CompareTo(Position3D other)
         {
@@ -74,8 +92,8 @@ public static class Helper
         public static implicit operator Position3DLong((long, long, long) p) => new(p.Item1, p.Item2, p.Item3);
         public static explicit operator (long, long, long)(Position3DLong p) => (p.X, p.Y, p.Z);
 
-        public static implicit operator Position3DLong(Position2DLong p) => new(p.X, p.Y, 0);
-        public static explicit operator Position2DLong(Position3DLong p) => new(p.X, p.Y);
+        public static implicit operator Position3DLong(Vector2DLong p) => new(p.X, p.Y, 0);
+        public static explicit operator Vector2DLong(Position3DLong p) => new(p.X, p.Y);
 
         public static implicit operator Position3DLong(Position3D p) => new(p.X, p.Y, p.Z);
         public static explicit operator Position3D(Position3DLong p) => new((int)p.X, (int)p.Y, (int)p.Z);
@@ -150,12 +168,13 @@ public static class Helper
     public static T LeastCommonMultiple<T>(this IEnumerable<T> values) where T : INumber<T>
         => values.Aggregate(LeastCommonMultiple);
 
-    public static int MDist(this Position2D pos1, Position2D pos2) =>
+    public static int MDist(this Vector2DInt pos1, Vector2DInt pos2) =>
         Math.Abs(pos1.X - pos2.X) + Math.Abs(pos1.Y - pos2.Y);
     public static int MDist(this Position3D pos1, Position3D pos2) =>
         Math.Abs(pos1.X - pos2.X) + Math.Abs(pos1.Y - pos2.Y) + Math.Abs(pos1.Z - pos2.Z);
-    public static long MDist(this Position2DLong pos1, Position2DLong pos2) =>
+    public static long MDist(this Vector2DLong pos1, Vector2DLong pos2) =>
         Math.Abs(pos1.X - pos2.X) + Math.Abs(pos1.Y - pos2.Y);
     public static long MDist(this Position3DLong pos1, Position3DLong pos2) =>
         Math.Abs(pos1.X - pos2.X) + Math.Abs(pos1.Y - pos2.Y) + Math.Abs(pos1.Z - pos2.Z);
+
 }

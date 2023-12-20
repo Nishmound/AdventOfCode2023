@@ -1,5 +1,5 @@
 ﻿namespace AdventOfCode2023;
-using Position = Helper.Position2DLong;
+using Position = Helper.Vector2DLong;
 internal class Day11 : AdventDay<long>
 {
     public long RunP1(StreamReader reader)

@@ -1,5 +1,5 @@
 ﻿namespace AdventOfCode2023;
-using Position = Helper.Position2D;
+using Position = Helper.Vector2DInt;
 internal class Day10 : AdventDay<int>
 {
     public int RunP1(StreamReader reader)
@@ -56,8 +56,9 @@ internal class Day10 : AdventDay<int>
                 Console.Write(map[x, y] switch
                 {
                     0 => '.',
-                    UP | DOWN  => '|',
-                    LEFT | RIGHT => '-'
+                    UP | DOWN => '|',
+                    LEFT | RIGHT => '-',
+                    _ => throw new NotImplementedException()
                 });
             }
         }

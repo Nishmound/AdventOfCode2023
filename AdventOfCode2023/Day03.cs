@@ -1,7 +1,7 @@
 ﻿namespace AdventOfCode2023;
 
 using System.Collections.Generic;
-using Position = Helper.Position2D;
+using Position = Helper.Vector2DInt;
 internal class Day03 : AdventDay<int>
 {
     public int RunP1(StreamReader reader)

@@ -95,13 +95,19 @@ RunDay(new Day15(),
     "What is the sum of the results?",
     "What is the sum of the results?");
 
-#endif
-
 RunDay(new Day16(),
     "input_day16",
     "Day 16: The Floor Will Be Lava",
     "How many tiles end up being energized?",
     "How many tiles end up being energized?");
+
+#endif
+
+RunDay(new Day17(),
+    "input_day17",
+    "Day 17: Clumsy Crucible",
+    "What is the least heat loss it can incur?",
+    "What is the least heat loss it can incur?");
 
 Console.ReadLine();
 
